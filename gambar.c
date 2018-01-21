@@ -242,7 +242,7 @@ void draw_huruf(int x, int y, char c){
 void draw_kata(int* x, int* y, char* kata){
 	int xx = *x;
 	int yy = *y;
-	int icrx = 32;
+	int icrx = 40;
 	int icry = 40;
 	char curr = ' ';
 	int i = 0;
