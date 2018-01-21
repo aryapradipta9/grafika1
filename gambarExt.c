@@ -277,6 +277,7 @@ void draw_huruf(int x, int y, char c){
   else if((c == 'f') || (c == 'F')) draw_huruf_F(x, y);
   else if((c == 'g') || (c == 'G')) draw_huruf_G(x, y);
   else if((c == 'h') || (c == 'H')) draw_huruf_H(x, y);
+  else if((c == 'k') || (c == 'K')) draw_huruf_K(x, y);
   else if((c == 'l') || (c == 'L')) draw_huruf_L(x, y);
   else if((c == 'm') || (c == 'M')) draw_huruf_M(x, y);
 	else if((c == 'n') || (c == 'N')) draw_huruf_N(x, y);
