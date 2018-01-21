@@ -53,14 +53,49 @@ void draw_huruf_X(int x, int y);
 void draw_huruf_Y(int x, int y);
 void draw_huruf_Z(int x, int y);
 void read_ext();
-void draw_kata(int* x, int* y, char* c);
+void draw_kata(int* x, int* y, char* kata, int len);
 void draw_huruf(int x, int y, char c);
 void draw_spasi(int x, int y);
 void refresh(int x0, int x1, int y0, int y1);
 
+int isValid(char* test,int len){
+	int i;
+	int count = 0;
+	for(i=0;i<len;i++){
+		if(test[i] == ' '){
+			count = 0;
+		}
+		else{
+			count++;
+		}
+		
+		if(count>40){
+			return 0;
+		}
+	}
+	return 1;
+}
+
+int findSpace(char* test,int len, int start){
+	int x = start + 39;
+	if (x >= len){
+		return len;
+	}
+	else{
+		while(test[x] != ' '){
+			x--;
+		}
+		return x;
+	}
+}
+
+
 int main()
 {
 //technical Stuff========================================================================
+	// Baca inputan
+	char input[256];
+	scanf("%256[^\n]",&input);
 
     // Membuka driver framebuffer
     fbfd = open("/dev/fb0", O_RDWR);
@@ -109,15 +144,9 @@ int main()
     //while(y0 > endPoint){
     	y = y0;
     	refresh(0, 360, 0, 700);
-      draw_kata(&x, &y,"abcdefghijklmnopqrstuvwxyz");
-      y += 32;
-	    draw_kata(&x, &y,"Kelompok orang-orang terbelakang");
-	    y += 32;
-
-	    draw_kata(&x, &y,"Arya");
-	    draw_kata(&x, &y,"Fathur");
-	    draw_kata(&x, &y,"Eki");
-	    draw_kata(&x, &y,"RIP");
+		if ((strlen(input) <= 256)&&(isValid(input,strlen(input)))){   
+         draw_kata(&x, &y,input,strlen(input));
+		}
 
 		int p, q;
 		for(p = 0; p < layarx; p++)
@@ -309,24 +338,32 @@ void draw_huruf(int x, int y, char c){
   }
 }
 
-void draw_kata(int* x, int* y, char* kata){
+void draw_kata(int* x, int* y, char* kata, int len){
 	int xx = *x;
 	int yy = *y;
-	int icrx = 40;
+	int icrx = 32;
 	int icry = 40;
 	char curr = ' ';
 	int i = 0;
-
-	while(i < 1000){
+    int spacepos = findSpace(kata,len,0);
+	while(i < len){
 		curr = kata[i];
 		if(curr == '\0') break;
 
 		draw_huruf(xx, yy, curr);
 		xx += icrx;
 		i++;
+		
+		if(i==spacepos){
+			yy += icry;
+			*y += icry;
+			xx = *x;
+			if (spacepos != len){
+				i++;
+				spacepos = findSpace(kata,len,i);
+			}
+		}
 	}
-
-	*y += icry;
 }
 
 void draw_huruf_A(int x, int y){
