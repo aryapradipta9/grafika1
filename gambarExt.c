@@ -69,7 +69,7 @@ int isValid(char* test,int len){
 			count++;
 		}
 		
-		if(count>40){
+		if(count>30){
 			return 0;
 		}
 	}
@@ -77,7 +77,7 @@ int isValid(char* test,int len){
 }
 
 int findSpace(char* test,int len, int start){
-	int x = start + 39;
+	int x = start + 29;
 	if (x >= len){
 		return len;
 	}
@@ -298,33 +298,7 @@ void draw_huruf(int x, int y, char c){
     c2 = c;
   }
   /// KULI
-	if((c == 'a') || (c == 'A')) draw_huruf_A(x, y);
-  else if((c == 'b') || (c == 'B')) draw_huruf_B(x, y);
-  else if((c == 'c') || (c == 'C')) draw_huruf_C(x, y);
-  else if((c == 'd') || (c == 'D')) draw_huruf_D(x, y);
-  else if((c == 'e') || (c == 'E')) draw_huruf_E(x, y);
-  else if((c == 'f') || (c == 'F')) draw_huruf_F(x, y);
-  else if((c == 'g') || (c == 'G')) draw_huruf_G(x, y);
-  else if((c == 'h') || (c == 'H')) draw_huruf_H(x, y);
-  else if((c == 'k') || (c == 'K')) draw_huruf_K(x, y);
-  else if((c == 'l') || (c == 'L')) draw_huruf_L(x, y);
-  else if((c == 'm') || (c == 'M')) draw_huruf_M(x, y);
-	else if((c == 'n') || (c == 'N')) draw_huruf_N(x, y);
-  else if((c == 'o') || (c == 'O')) draw_huruf_O(x, y);
-  else if((c == 'p') || (c == 'P')) draw_huruf_P(x, y);
-  else if((c == 'q') || (c == 'Q')) draw_huruf_Q(x, y);
-  else if((c == 'r') || (c == 'R')) draw_huruf_R(x, y);
-	else if((c == 's') || (c == 'S')) draw_huruf_S(x, y);
-	else if((c == 't') || (c == 'T')) draw_huruf_T(x, y);
-  else if((c == 'u') || (c == 'U')) draw_huruf_U(x, y);
-  else if((c == 'v') || (c == 'V')) draw_huruf_V(x, y);
-  else if((c == 'w') || (c == 'W')) draw_huruf_W(x, y);
-  else if((c == 'x') || (c == 'X')) draw_huruf_X(x, y);
-  else if((c == 'y') || (c == 'Y')) draw_huruf_Y(x, y);
-  else if((c == 'z') || (c == 'Z')) draw_huruf_Z(x, y);
-	else if((c == ' ') || (c == ' ')) draw_spasi(x, y);
-  else {
-
+	
     int i, j;
     for(i = 0; i < 32; i++)
         for(j = 0; j < 32; j++){
@@ -335,13 +309,13 @@ void draw_huruf(int x, int y, char c){
             buffer_b[x + j][y + i] = font[c2 - 65][i][j];
           }
         }
-  }
+ 
 }
 
 void draw_kata(int* x, int* y, char* kata, int len){
 	int xx = *x;
 	int yy = *y;
-	int icrx = 32;
+	int icrx = 40;
 	int icry = 40;
 	char curr = ' ';
 	int i = 0;
